@@ -4,7 +4,9 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var serverConfig = require('./commons/config');
 //导入模块路由
-var account = require('./controller/account-controller');
+var userCtrl = require('./controller/user-controller');
+
+// 创建应用
 var app = express();
 
 app.use(session({
@@ -19,8 +21,11 @@ app.use(session({
 app.use(bodyParser.json());
 
 //处理静态资源
-app.use(express.static(path.join(__dirname, 'view')));
+app.use(serverConfig.appConfig.viewPrefix, express.static(path.join(__dirname, 'view')));
 
-app.use('/account', account);
+// 用户操作--路由
+app.use(serverConfig.appConfig.ifcPrefix + '/user', userCtrl);
 
-app.listen(serverConfig.port);
+app.listen(serverConfig.appConfig.port);
+
+console.log('server is started.\nlisten port: ' + serverConfig.appConfig.port);

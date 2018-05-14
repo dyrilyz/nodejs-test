@@ -2,7 +2,7 @@
   "name": "nodejs-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "node src/app"
   },
@@ -12,6 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "express-session": "^1.15.6"
+    "express-session": "^1.15.6",
+    "md5": "^2.2.1",
+    "mysql": "^2.15.0"
   }
 }
