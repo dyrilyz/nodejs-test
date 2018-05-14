@@ -1,4 +1,4 @@
-var serverConfig = {
+module.exports = {
     appConfig: {
         port: 8080,
         ifcPrefix: '/ifc',
@@ -13,5 +13,3 @@ var serverConfig = {
         // ,debug: ['ComQueryPacket', 'RowDataPacket']  //开启调试模式
     }
 };
-
-module.exports = serverConfig;
