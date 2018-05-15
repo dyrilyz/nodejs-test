@@ -1,11 +1,15 @@
-var serverConfig = {
-    serer: {
-        port: 8080
+module.exports = {
+    appConfig: {
+        port: 8080,
+        ifcPrefix: '/ifc',
+        viewPrefix: '/view'
     },
-    mysql: {
+    mysqlConfig: {
+        host: 'localhost',
         port: 3306,
-
+        user: 'root',
+        password: 'root',
+        database: 'forum'
+        // ,debug: ['ComQueryPacket', 'RowDataPacket']  //开启调试模式
     }
 };
-
-module.exports = serverConfig;
