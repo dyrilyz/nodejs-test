@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container-fluid">
+    <div ng-bind="user.username"></div>已登录
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $scope.user = JSON.parse(sessionStorage.user)
+        console.log(sessionStorage.user)
+    });
+</script>
+</body>

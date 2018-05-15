@@ -3,15 +3,23 @@ var userService = require('../service/user-service');
 var router = express.Router();
 
 router
-// TODO 注册接口
+    // 注册接口
     .post('/register', function (req, resp) {
-        var flag = userService.accountIsExist(123);
-        // flag = false;
-        if (flag) {
-            resp.send({status: true, msg: '注册成功'});
-        } else {
-            resp.send({status: false, msg: '该账号已存在'});
-        }
+        userService.checkAccount(req.body.account).then(
+            function () {
+                userService.appendUser({
+                    account: req.body.account,
+                    password: req.body.password
+                }).then(function () {
+                    resp.send({status: true, msg: '注册成功'});
+                }, function () {
+                    resp.send({status: false, msg: '注册失败'});
+                })
+            },
+            function () {
+                resp.send({status: false, msg: '该账号已存在'});
+            }
+        );
     })
     // 登录接口
     .post('/login', function (req, resp) {
