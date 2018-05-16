@@ -17,7 +17,7 @@ module.exports = function (excludeUrls) {
             if (flag) {
                 next();
                 // 页面拦截
-            } else if (viewReg.test(req.url)) {
+            } else if (viewReg.test(req.url) || req.url == '/') {
                 resp.redirect('/view/login.html');
                 // 接口拦截
             } else {
