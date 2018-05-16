@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container-fluid">
+    <form class="form-horizontal">
+        <div class="row" style="background:#e7e7e7;padding: 15px 0;">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-group">
+                <label class="control-label col-lg-3 col-sm-5 col-xl-6">账号</label>
+                <div class=" col-lg-9 col-sm-7 col-xl-6">
+                    <input class="form-control" ng-model="user.account" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 form-group">
+                <label class="control-label col-lg-3 col-sm-5 col-xl-6">密码</label>
+                <div class=" col-lg-9 col-sm-7 col-xl-6">
+                    <input class="form-control" ng-model="user.password" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 form-group">
+                <label class="control-label col-lg-3 col-sm-5 col-xl-6">确认密码</label>
+                <div class=" col-lg-9 col-sm-7 col-xl-6">
+                    <input class="form-control" ng-model="user.confirm" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 row">
+                <div class=" col-lg-3 col-sm-5 hidden-xs"></div>
+                <div class="col-lg-9 col-sm-7 col-xs-12">
+                    <button class="btn btn-primary" ng-click="login()" style="margin-right: 15px;">注册</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $scope.login = function () {
+            if (
+                !$scope.user ||
+                !$scope.user.account ||
+                !$scope.user.password ||
+                $scope.user.password != $scope.user.confirm
+            ) return;
+            var user = {
+                account: $scope.user.account,
+                password: $scope.user.password
+            }
+            $http.post('/ifc/user/register', user).then(function (result) {
+                console.log(result.data)
+            })
+        }
+    });
+</script>
+</body>

@@ -3,12 +3,15 @@ var path = require('path');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var serverConfig = require('./commons/config');
+var loginFilter = require('./filter/login-filter');
+var excludeUrl = require('./commons/exclude-url')
 //导入模块路由
 var userCtrl = require('./controller/user-controller');
 
 // 创建应用
 var app = express();
 
+// 使用session中间件
 app.use(session({
     secret: 'zhxazr',
     // resave 为强制将session存入store中
@@ -17,6 +20,10 @@ app.use(session({
     saveUninitialized: false,
     cookie: {secure: false, maxAge: 1000 * 60 * 30}
 }));
+
+// 添加登录拦截
+app.use('/', loginFilter(excludeUrl));
+
 // 解析post请求时所传参数
 app.use(bodyParser.json());
 

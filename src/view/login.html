@@ -2,9 +2,6 @@
 <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
 <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <body ng-app="myApp" ng-controller="myCtrl">
-<nav class="navbar hidden-xs">
-    <div class="container"></div>
-</nav>
 <div class="container-fluid">
     <form class="form-horizontal">
         <div class="row" style="background:#e7e7e7;padding: 15px 0;">
@@ -28,7 +25,6 @@
             </div>
         </div>
     </form>
-    {{account}}
 </div>
 <script>
     var app = angular.module('myApp', []);
@@ -36,6 +32,10 @@
         $scope.login = function () {
             $http.post('/ifc/user/login', $scope.user).then(function (result) {
                 console.log(result.data)
+                if(result.data.status) {
+                    sessionStorage.user = JSON.stringify(result.data.user)
+                    location.href = '/view/index.html'
+                }
             })
         }
     });
