@@ -1,0 +1,47 @@
+.dy-selector {
+    width: 100px;
+    position: relative;
+}
+
+.dy-selector * {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.dy-selector input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+.dy-selector .dy-selector-value {
+    border: 1px solid #89e7ff;
+    padding: 0 3px;
+}
+
+.dy-selector-able {
+    cursor: pointer;
+}
+
+.dy-selector .dy-selector-list {
+    border: 1px solid #89e7ff;
+    border-top: 0;
+    padding: 3px;
+}
+
+.dy-selector ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.dy-selector ul li {
+    text-align: center;
+    cursor: pointer;
+}
+
+.dy-selector ul li:hover {
+    background-color: #89e7ff;
+}

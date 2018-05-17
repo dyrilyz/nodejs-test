@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+<input type="text" ng-model="aaa">{{aaa}}
+<button ng-click="clickA">btn</button>
+</body>
+<script>
+    var app = angular.module('app', []);
+    app.controller('ctrl', function ($scope) {
+        $scope.clickA = function () {
+            $scope.aaa = ''
+        }
+    })
+</script>
+</html>
