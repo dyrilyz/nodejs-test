@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+<dir1 ng-model="aa"></dir1>
+</body>
+<script>
+    var app = angular.module('app', []);
+    app.controller('ctrl', function($scope) {
+        $scope.aa='123123123'
+    })
+    app.directive('dir1', function () {
+
+        return {
+            restrict: 'E',
+            template: `
+                <input type="text" ng-model="aaa">
+                <button ng-repeat="item in [1,2,3,4,5]" ng-click="clickA()">btn</button>`,
+            link: function ($scope) {
+
+                $scope.aaa = ''
+                $scope.clickA = function () {
+                    $scope.aaa = ''
+                    console.log($scope.aaa)
+                    // $scope.$apply()
+                }
+            }
+        }
+    })
+</script>
+</html>

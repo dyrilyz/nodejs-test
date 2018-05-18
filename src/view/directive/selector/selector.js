@@ -4,7 +4,7 @@
  * @param dyList 传入数组
  * >带检索查询
  * >可以使用disabled禁用selector
- * TODO 关闭列表搜索框值未清空
+ * TODO 事件委托
  */
 angular.module('directive.selector', []).directive('dySelector', function () {
     return {
@@ -17,11 +17,10 @@ angular.module('directive.selector', []).directive('dySelector', function () {
         template: `
         <div class="dy-selector">
             <div class="dy-selector-value" ng-bind="ngModel" ng-class="{'dy-selector-able':selectorAble}" ng-click="showList()"></div>
-            <div class="dy-selector-list" ng-show="isShowList" ng-if="selectorAble">
-                <input type="text" ng-model="search" id="dy-selector-search"/>
-                {{search}}
+            <div class="dy-selector-list" ng-show="selectorAble && isShowList">
+                <input type="text" ng-model="keyWord" id="dy-selector-search"/>
                 <ul>
-                    <li ng-repeat="item in dyList track by $index" ng-click="setItem(item)" ng-show="item.indexOf(search) != -1">
+                    <li ng-repeat="item in dyList track by $index" ng-click="setItem(item)" ng-show="item.indexOf(keyWord) != -1">
                         <span ng-bind="item"></span>
                     </li>
                 </ul>
@@ -33,19 +32,19 @@ angular.module('directive.selector', []).directive('dySelector', function () {
             } else {
                 $scope.selectorAble = false
             }
-            var dyList = $scope.dyList
+            console.log(window)
+        },
+        controller: function ($scope) {
             $scope.isShowList = false
-            $scope.search = ''
+            $scope.keyWord = ''
             $scope.setItem = function (item) {
                 $scope.ngModel = item
                 $scope.isShowList = false
-                $scope.search = ''
-                console.log($scope)
-                // $scope.$apply()
+                $scope.keyWord = ''
             }
             $scope.showList = function () {
                 $scope.isShowList = !$scope.isShowList
-                $scope.search = ''
+                $scope.keyWord = ''
             }
         }
     }
